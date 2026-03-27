@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://deebmcxerpjyr"]
+
+[ext_resource type="Script" uid="uid://cor2se5wl64rl" path="res://Script/Obstacle/SmallPike.cs" id="1_j13uf"]
+[ext_resource type="Texture2D" uid="uid://j6r8ydbgp2q6" path="res://Sprite/spikes.png" id="1_jj2s3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qweos"]
+size = Vector2(55, 37)
+
+[node name="SmallPike" type="Area2D" unique_id=2039644676]
+script = ExtResource("1_j13uf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=240639463]
+position = Vector2(1.5, 13.5)
+shape = SubResource("RectangleShape2D_qweos")
+debug_color = Color(0.8572382, 0.24606061, 0.026977478, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1922566983]
+texture_filter = 1
+texture = ExtResource("1_jj2s3")

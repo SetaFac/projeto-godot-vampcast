@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dhwrpo148pga8"]
+
+[ext_resource type="PackedScene" uid="uid://dmgv61y0a4ibf" path="res://Object/Entity/PlayerCharacter.tscn" id="1_f6udf"]
+[ext_resource type="Texture2D" uid="uid://ci8fhmpgpi8lo" path="res://Sprite/indestructible_wall.png" id="2_sblpm"]
+[ext_resource type="PackedScene" uid="uid://deebmcxerpjyr" path="res://Object/Obstacle/SmallPike.tscn" id="3_r34rm"]
+[ext_resource type="PackedScene" uid="uid://ceaq6v4rw67s5" path="res://Object/HUD/PlayerHUD.tscn" id="4_2wwxx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6udf"]
+size = Vector2(1168, 77)
+
+[node name="Node2D" type="Node2D" unique_id=222402008]
+
+[node name="PlayerCharacter" parent="." unique_id=39127374 instance=ExtResource("1_f6udf")]
+position = Vector2(571, 327)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1382814560]
+position = Vector2(559, 466)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2136214142]
+position = Vector2(0, 28.5)
+shape = SubResource("RectangleShape2D_f6udf")
+debug_color = Color(0.6507314, 0, 0.06417747, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=281638084]
+position = Vector2(0, 28.499987)
+scale = Vector2(18.28125, 1.2343745)
+texture = ExtResource("2_sblpm")
+
+[node name="SmallPike" parent="." unique_id=2039644676 instance=ExtResource("3_r34rm")]
+position = Vector2(125, 423)
+
+[node name="PlayerHUD" parent="." unique_id=1126355570 instance=ExtResource("4_2wwxx")]

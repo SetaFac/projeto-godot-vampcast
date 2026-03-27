@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ceaq6v4rw67s5"]
+
+[ext_resource type="Script" uid="uid://cbpls7lr214sl" path="res://Script/HUD/PlayerHUD.cs" id="1_n2a2b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wgpv"]
+bg_color = Color(0.7421003, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a2b"]
+bg_color = Color(0, 0.40784314, 0.6, 1)
+
+[node name="PlayerHUD" type="Control" unique_id=1126355570]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n2a2b")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1744779682]
+
+[node name="HealthInfo" type="Control" parent="CanvasLayer" unique_id=718986205]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 527.0
+offset_bottom = 28.0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HealthInfo" unique_id=443813586]
+layout_mode = 0
+offset_right = 525.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4wgpv")
+value = 50.0
+show_percentage = false
+
+[node name="ManaInfo" type="Control" parent="CanvasLayer" unique_id=1042962425]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 27.0
+offset_right = 263.0
+offset_bottom = 54.0
+
+[node name="ManaBar" type="ProgressBar" parent="CanvasLayer/ManaInfo" unique_id=631751029]
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_n2a2b")
+value = 50.0
+show_percentage = false

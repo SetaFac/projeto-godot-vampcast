@@ -1,4 +1,5 @@
 using Godot;
+using nobody_modules.Module.Effect;
 using System;
 using System.Collections.Generic;
 
@@ -6,13 +7,13 @@ public delegate void PlayerVitalStatus();
 
 public enum PlayerState
 {
-    Idle,
-    Walking,
-    Jumping,
-    Falling,
-    Dashing,
-    Attacking,
-    Died
+    IDLE,
+    WALKING,
+    JUMPING,
+    FALLING,
+    DASHING,
+    ATTACKING,
+    DIED
 }
 
 public partial class PlayerCharacter : CharacterBody2D
@@ -32,7 +33,7 @@ public partial class PlayerCharacter : CharacterBody2D
     private float Speed { get; set; } = 200f;
     private float JumpForce { get; set; } = -250f;
 
-    private PlayerState state = PlayerState.Idle;
+    private PlayerState state = PlayerState.IDLE;
     public PlayerState CurrentState { get => state; }
 
     public int MaxLife { get; set; } = 1;
@@ -45,6 +46,7 @@ public partial class PlayerCharacter : CharacterBody2D
 
 
     private Sprite2D _Sprite;
+    private FadeInOut _module_fade;
 
     public override void _Ready()
     {
@@ -54,6 +56,9 @@ public partial class PlayerCharacter : CharacterBody2D
 
         _Sprite = GetNode<Sprite2D>("Sprite2D");
         foreach (Timer t in playerTimers.Values) GetTree().CurrentScene.CallDeferred("add_child", t);
+        playerTimers["Hitted"].Timeout += () => { _module_fade?.Stop(); };
+
+        _module_fade = GetNode<FadeInOut>("FadeInOut");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -85,6 +90,7 @@ public partial class PlayerCharacter : CharacterBody2D
 
         Health -= damage;
         playerTimers["Hitted"].Start();
+        _module_fade?.Start();
     }
 
     public int Health

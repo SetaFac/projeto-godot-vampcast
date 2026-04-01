@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bo5cwhlpg2c75" path="res://Script/Entity/PlayerCharacter.cs" id="1_3flq2"]
 [ext_resource type="Texture2D" uid="uid://dgnldr01t7jsa" path="res://Sprite/icon.svg" id="1_73fy5"]
+[ext_resource type="Script" uid="uid://3msubhobki82" path="res://addons/nobody_modules/Module/Effect/FadeInOut.cs" id="3_y6cp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e22up"]
 size = Vector2(126, 126)
@@ -17,3 +18,10 @@ shape = SubResource("RectangleShape2D_e22up")
 texture = ExtResource("1_73fy5")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1549887287]
+
+[node name="FadeInOut" type="Node" parent="." unique_id=273859957]
+script = ExtResource("3_y6cp1")
+EffectTimer = 5.0
+IncrementAmount = 0.05
+IgnoreInitialingWarning = true
+metadata/_custom_type_script = "uid://3msubhobki82"

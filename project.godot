@@ -23,6 +23,10 @@ buses/default_bus_layout="uid://dffqr61jj2y5k"
 
 project/assembly_name="projeto-godot-vampcast"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nobody_modules/plugin.cfg")
+
 [input]
 
 left={

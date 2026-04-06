@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://tbgjq1xpn72b"]
+
+[ext_resource type="Texture2D" uid="uid://cuy10wuinjwfm" path="res://Sprite/Drop/Heal.png" id="1_ggrtr"]
+[ext_resource type="Script" uid="uid://celynshlbtd5u" path="res://Script/Drop/DS/Heal.cs" id="1_pwknu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwknu"]
+size = Vector2(16, 16)
+
+[node name="Heal" type="Area2D" unique_id=1575929657]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_pwknu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1618117881]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_pwknu")
+debug_color = Color(0, 0.6401895, 0.35828373, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1030523032]
+texture_filter = 1
+position = Vector2(0, -8)
+texture = ExtResource("1_ggrtr")
+
+[node name="FloorRaycast" type="RayCast2D" parent="." unique_id=1804193663]
+position = Vector2(0, -8)
+target_position = Vector2(0, 15)
+collision_mask = 4

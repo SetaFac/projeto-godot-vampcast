@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://deebmcxerpjyr"]
 
 [ext_resource type="Script" uid="uid://cor2se5wl64rl" path="res://Script/Obstacle/SmallPike.cs" id="1_j13uf"]
-[ext_resource type="Texture2D" uid="uid://j6r8ydbgp2q6" path="res://Sprite/spikes.png" id="1_jj2s3"]
+[ext_resource type="Texture2D" uid="uid://j6r8ydbgp2q6" path="res://Sprite/Obstacle/spikes.png" id="1_jj2s3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qweos"]
 size = Vector2(55, 37)

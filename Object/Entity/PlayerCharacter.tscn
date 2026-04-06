@@ -1,20 +1,26 @@
 [gd_scene format=3 uid="uid://dmgv61y0a4ibf"]
 
-[ext_resource type="Script" uid="uid://bo5cwhlpg2c75" path="res://Script/Entity/PlayerCharacter.cs" id="1_3flq2"]
+[ext_resource type="Script" uid="uid://bo5cwhlpg2c75" path="res://Script/Entity/PlayerFriedly/PlayerCharacter.cs" id="1_3flq2"]
 [ext_resource type="Texture2D" uid="uid://dgnldr01t7jsa" path="res://Sprite/icon.svg" id="1_73fy5"]
 [ext_resource type="Script" uid="uid://3msubhobki82" path="res://addons/nobody_modules/Module/Effect/FadeInOut.cs" id="3_y6cp1"]
+[ext_resource type="Script" uid="uid://ddynfa8b0hlgn" path="res://Script/Entity/PlayerFriedly/PlayerPhysicalHit.cs" id="4_ow48m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e22up"]
 size = Vector2(126, 126)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6cp1"]
+size = Vector2(31.47416, 117.13162)
+
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=39127374]
 scale = Vector2(0.5122442, 0.5122442)
+collision_mask = 5
 script = ExtResource("1_3flq2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1008357554]
 shape = SubResource("RectangleShape2D_e22up")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=100003547]
+texture_filter = 1
 texture = ExtResource("1_73fy5")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1549887287]
@@ -25,3 +31,17 @@ EffectTimer = 5.0
 IncrementAmount = 0.05
 IgnoreInitialingWarning = true
 metadata/_custom_type_script = "uid://3msubhobki82"
+
+[node name="PhysicalHit" type="Area2D" parent="." unique_id=340735504]
+position = Vector2(74.183365, 2.3841858e-07)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+script = ExtResource("4_ow48m")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalHit" unique_id=681376518]
+position = Vector2(3.7848587, 0)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_y6cp1")
+debug_color = Color(1, 1, 1, 0.41960785)

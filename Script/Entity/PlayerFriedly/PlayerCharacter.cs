@@ -1,10 +1,11 @@
 using Godot;
 using nobody_modules.Module.Effect;
-using System;
+using projetogodotvampcast.Script.CombatWeapon;
+using projetogodotvampcast.Script.CombatWeapon.WP;
 using System.Collections.Generic;
 
+namespace projetogodotvampcast.Script.Entity.PlayerFriendly;
 public delegate void PlayerVitalStatus();
-
 public enum PlayerState
 {
     IDLE,
@@ -16,11 +17,8 @@ public enum PlayerState
     DIED
 }
 
-public partial class PlayerCharacter : CharacterBody2D
+public partial class PlayerCharacter : LivingCharacter
 {
-    public event PlayerVitalStatus OnHealthChange;
-    public event PlayerVitalStatus OnLifeChange;
-    public event PlayerVitalStatus OnManaChange;
 
     private Dictionary<string, Timer> playerTimers = new Dictionary<string, Timer>()
     {
@@ -28,37 +26,38 @@ public partial class PlayerCharacter : CharacterBody2D
         { "Hitted", new Timer() { WaitTime = 1f, OneShot = true, Autostart = false } }
     };
 
-    private string DisplayName { get; set; } = "Player";
-
-    private float Speed { get; set; } = 200f;
-    private float JumpForce { get; set; } = -250f;
-
     private PlayerState state = PlayerState.IDLE;
     public PlayerState CurrentState { get => state; }
 
-    public int MaxLife { get; set; } = 1;
-    public  int MaxHealth { get; set; } = 100;
-    public int MaxMana { get; set; } = 50;
-
-    private int life = 0;
-    private int health = 0;
-    private int mana = 0;
-
+    private Weapon currentWeapon;
+    public Weapon CurrentWeaponEquipped { get => currentWeapon; }
 
     private Sprite2D _Sprite;
     private FadeInOut _module_fade;
+    private PlayerPhysicalHit _physical_hit;
 
     public override void _Ready()
     {
+        currentWeapon = new VampireFists();
+
         life = MaxLife;
         health = MaxHealth;
         mana = MaxMana;
 
-        _Sprite = GetNode<Sprite2D>("Sprite2D");
         foreach (Timer t in playerTimers.Values) GetTree().CurrentScene.CallDeferred("add_child", t);
         playerTimers["Hitted"].Timeout += () => { _module_fade?.Stop(); };
 
         _module_fade = GetNode<FadeInOut>("FadeInOut");
+        _physical_hit = GetNode<PlayerPhysicalHit>("PhysicalHit");
+
+        _Sprite = GetNode<Sprite2D>("Sprite2D");
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (Input.IsActionJustPressed("action")) ActionOn();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -84,43 +83,23 @@ public partial class PlayerCharacter : CharacterBody2D
         MoveAndSlide();
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         if (!playerTimers["Hitted"].IsStopped()) return;
+        base.TakeDamage(damage);
 
-        Health -= damage;
         playerTimers["Hitted"].Start();
         _module_fade?.Start();
     }
 
-    public int Health
+    private void ActionOn()
     {
-        get => health;
-        set
-        {
-            health = Math.Clamp(value, 0, MaxHealth);
-            OnHealthChange?.Invoke();
-        }
+        if(!_physical_hit.IsHitting) PhysicalAttack();
     }
-
-    public int Life
+    private void PhysicalAttack()
     {
-        get => life;
-        set
-        {
-            life = Math.Clamp(value, 0, MaxLife);
-            OnLifeChange?.Invoke();
-        }
-    }
-
-    public int Mana
-    {
-        get => mana;
-        set
-        {
-            mana = Math.Clamp(value, 0, MaxMana);
-            OnManaChange?.Invoke();
-        }
+        //GD.Print("Attacando!!");
+        _physical_hit.StartHitBox();
     }
 
     public bool CanHit { get => playerTimers["Hitted"].IsStopped(); }

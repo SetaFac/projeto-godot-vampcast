@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dbo3b6p1l43n"]
+
+[ext_resource type="Script" uid="uid://ci6oe1p76dbo7" path="res://Script/Entity/Enemy/Dummy.cs" id="1_urajx"]
+[ext_resource type="Texture2D" uid="uid://hvctp4frihbg" path="res://Sprite/Enemy/dummy_burro.png" id="2_urajx"]
+[ext_resource type="PackedScene" uid="uid://bmar74o66k5jk" path="res://Object/HUD/EnityInfo.tscn" id="3_urajx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44lkn"]
+size = Vector2(22, 57)
+
+[node name="Dummy" type="CharacterBody2D" unique_id=1514334516]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_urajx")
+metadata/_custom_type_script = "uid://cfrob3jhehuw8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=947524075]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_44lkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=295449687]
+texture_filter = 1
+texture = ExtResource("2_urajx")
+
+[node name="EnityInfo" parent="." unique_id=462558750 instance=ExtResource("3_urajx")]
+offset_top = 24.0
+offset_bottom = 24.0

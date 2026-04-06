@@ -2,8 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cbpls7lr214sl" path="res://Script/HUD/PlayerHUD.cs" id="1_n2a2b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h04jb"]
+bg_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wgpv"]
 bg_color = Color(0.7421003, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0o5s"]
+bg_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a2b"]
 bg_color = Color(0, 0.40784314, 0.6, 1)
@@ -29,6 +35,7 @@ offset_bottom = 28.0
 layout_mode = 0
 offset_right = 525.0
 offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_h04jb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4wgpv")
 value = 50.0
 show_percentage = false
@@ -44,6 +51,7 @@ offset_bottom = 54.0
 layout_mode = 0
 offset_right = 264.0
 offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d0o5s")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n2a2b")
 value = 50.0
 show_percentage = false

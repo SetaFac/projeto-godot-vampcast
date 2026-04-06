@@ -1,5 +1,7 @@
 using Godot;
+using projetogodotvampcast.Script.Entity.PlayerFriendly;
 
+namespace projetogodotvampcast.Script.Obstacle;
 public partial class SmallPike : Area2D
 {
 	public int Damage { get; set; } = 20;

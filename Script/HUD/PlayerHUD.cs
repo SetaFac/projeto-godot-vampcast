@@ -1,4 +1,7 @@
 using Godot;
+using projetogodotvampcast.Script.Entity.PlayerFriendly;
+
+namespace projetogodotvampcast.Script.HUD;
 
 public partial class PlayerHUD : Control
 {

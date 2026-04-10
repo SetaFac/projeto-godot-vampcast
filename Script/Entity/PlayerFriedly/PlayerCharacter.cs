@@ -36,6 +36,9 @@ public partial class PlayerCharacter : LivingCharacter
     private FadeInOut _module_fade;
     private PlayerPhysicalHit _physical_hit;
 
+    private int jumpsCount = 0;
+    public int MaxJumps { get; set; } = 2;
+
     public override void _Ready()
     {
         currentWeapon = new VampireFists();
@@ -58,6 +61,7 @@ public partial class PlayerCharacter : LivingCharacter
         base._Process(delta);
 
         if (Input.IsActionJustPressed("action")) ActionOn();
+        if (Input.IsActionJustPressed("cast_spell")) CastSpell();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -67,17 +71,12 @@ public partial class PlayerCharacter : LivingCharacter
         velocity.X = inputVector.X * Speed;
 
         if(inputVector.X != 0) _Sprite.FlipH = inputVector.X < 0;
-        if (!IsOnFloor())
+        if (Input.IsActionJustPressed("jump") && jumpsCount < MaxJumps)
         {
-            velocity.Y += (GetGravity() * (float)delta).Y;
+            velocity.Y = JumpForce;
+            jumpsCount++;
         }
-        else
-        {
-            if(Input.IsActionJustPressed("jump"))
-            {
-                velocity.Y = JumpForce;
-            }
-        }
+        if (!IsOnFloor()) velocity.Y += (GetGravity() * (float)delta).Y; else jumpsCount = 0;
 
         Velocity = velocity;
         MoveAndSlide();
@@ -94,9 +93,15 @@ public partial class PlayerCharacter : LivingCharacter
 
     private void ActionOn()
     {
-        if(!_physical_hit.IsHitting) PhysicalAttack();
+        if(!_physical_hit.IsHitting) _PhysicalAttack();
     }
-    private void PhysicalAttack()
+
+    private void CastSpell()
+    {
+        GD.Print("Castando magia!!");
+    }
+
+    private void _PhysicalAttack()
     {
         //GD.Print("Attacando!!");
         _physical_hit.StartHitBox();

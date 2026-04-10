@@ -14,7 +14,7 @@ bg_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2a2b"]
 bg_color = Color(0, 0.40784314, 0.6, 1)
 
-[node name="PlayerHUD" type="Control" unique_id=1126355570]
+[node name="PlayerSHUD" type="Control" unique_id=1126355570]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,3 +55,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_d0o5s")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n2a2b")
 value = 50.0
 show_percentage = false
+
+[node name="ArsenalInfo" type="Control" parent="CanvasLayer" unique_id=446632962]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_bottom = 71.0
+grow_horizontal = 0

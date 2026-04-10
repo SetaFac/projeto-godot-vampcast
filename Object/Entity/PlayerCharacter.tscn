@@ -13,7 +13,7 @@ size = Vector2(31.47416, 117.13162)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=39127374]
 scale = Vector2(0.5122442, 0.5122442)
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_3flq2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1008357554]

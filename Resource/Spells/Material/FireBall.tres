@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MaterialSpell" format=3 uid="uid://cto57om108a1"]
+
+[ext_resource type="Script" uid="uid://bqvvw1xpg0vut" path="res://Script/Magic/SpellMaterial/MaterialSpell.cs" id="1_inujk"]
+[ext_resource type="PackedScene" uid="uid://ckb4area2r2nx" path="res://Object/Magic/Spell/FireBall.tscn" id="1_sgeir"]
+
+[resource]
+script = ExtResource("1_inujk")
+MagicalDamage = 35
+MaterializeCastDelay = 3.0
+KeepMaterializeTime = 30.0
+MagicalSpeed = 200.0
+SpellMechanism = ExtResource("1_sgeir")
+ManaCost = 20.0
+Cooldown = 3.0
+Coolup = 2.0
+Level = 2
+metadata/_custom_type_script = "uid://bqvvw1xpg0vut"

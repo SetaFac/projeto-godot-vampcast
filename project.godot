@@ -12,8 +12,8 @@ config_version=5
 
 config/name="projeto-godot-vampcast"
 run/main_scene="uid://dhwrpo148pga8"
-config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
-config/icon="res://Sprite/icon.svg"
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
+config/icon="res://Resource/Sprite/icon.svg"
 
 [audio]
 

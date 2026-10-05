@@ -4,6 +4,8 @@ using projetogodotvampcast.Script.Entity;
 using projetogodotvampcast.Script.Entity.PlayerFriendly;
 using System.Collections.Generic;
 
+namespace projetogodotvampcast.Script.Mekaniks;
+
 public partial class PlayerPhysicalHit : Area2D
 {
 	private PlayerCharacter _character;

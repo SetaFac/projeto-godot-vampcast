@@ -1,7 +1,11 @@
 using Godot;
+using Godot.Collections;
 using nobody_modules.Module.Effect;
+using projetogodotvampcast.Game.WorldController;
 using projetogodotvampcast.Script.CombatWeapon;
 using projetogodotvampcast.Script.CombatWeapon.WP;
+using projetogodotvampcast.Script.Magic.SpellMaterial;
+using projetogodotvampcast.Script.Mekaniks;
 using System.Collections.Generic;
 
 namespace projetogodotvampcast.Script.Entity.PlayerFriendly;
@@ -19,8 +23,9 @@ public enum PlayerState
 
 public partial class PlayerCharacter : LivingCharacter
 {
+    [Export] public Array<Spell> Grimmorium {get; set;}
 
-    private Dictionary<string, Timer> playerTimers = new Dictionary<string, Timer>()
+    private System.Collections.Generic.Dictionary<string, Timer> playerTimers = new System.Collections.Generic.Dictionary<string, Timer>()
     {
         { "Dash", new Timer() { WaitTime = 0.5f, OneShot = true, Autostart = false }},
         { "Hitted", new Timer() { WaitTime = 1f, OneShot = true, Autostart = false } }
@@ -99,6 +104,8 @@ public partial class PlayerCharacter : LivingCharacter
     private void CastSpell()
     {
         GD.Print("Castando magia!!");
+        Asmodeus magicGod = GetTree().CurrentScene.GetNode<Asmodeus>("Asmodeus");
+        magicGod?.CastMaterialSpell((MaterialSpell)Grimmorium[0], GlobalPosition);
     }
 
     private void _PhysicalAttack()

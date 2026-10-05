@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dhwrpo148pga8"]
 
 [ext_resource type="PackedScene" uid="uid://dmgv61y0a4ibf" path="res://Object/Entity/PlayerCharacter.tscn" id="1_f6udf"]
-[ext_resource type="Texture2D" uid="uid://ci8fhmpgpi8lo" path="res://Sprite/indestructible_wall.png" id="2_sblpm"]
+[ext_resource type="Resource" uid="uid://cto57om108a1" path="res://Resource/Spells/Material/FireBall.tres" id="2_ow1sv"]
+[ext_resource type="Texture2D" uid="uid://ci8fhmpgpi8lo" path="res://Resource/Sprite/indestructible_wall.png" id="2_sblpm"]
 [ext_resource type="PackedScene" uid="uid://dl62med4jm0bg" path="res://Object/Obstacle/SmallPike.tscn" id="3_r34rm"]
 [ext_resource type="PackedScene" uid="uid://ceaq6v4rw67s5" path="res://Object/HUD/Player/PlayerSHUD.tscn" id="4_2wwxx"]
 [ext_resource type="PackedScene" uid="uid://dbo3b6p1l43n" path="res://Object/Entity/Enemy/Dummy.tscn" id="5_3amdw"]
@@ -14,6 +15,7 @@ size = Vector2(1168, 77)
 
 [node name="PlayerCharacter" parent="." unique_id=39127374 instance=ExtResource("1_f6udf")]
 position = Vector2(367.00003, 291.00003)
+Grimmorium = Array[Object]([ExtResource("2_ow1sv")])
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1382814560]
 position = Vector2(559, 466)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://tbgjq1xpn72b"]
 
-[ext_resource type="Texture2D" uid="uid://cuy10wuinjwfm" path="res://Sprite/Drop/Heal.png" id="1_ggrtr"]
+[ext_resource type="Texture2D" uid="uid://cuy10wuinjwfm" path="res://Resource/Sprite/Drop/Heal.png" id="1_ggrtr"]
 [ext_resource type="Script" uid="uid://celynshlbtd5u" path="res://Script/Drop/DS/Heal.cs" id="1_pwknu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pwknu"]

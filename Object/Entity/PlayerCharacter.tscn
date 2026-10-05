@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dmgv61y0a4ibf"]
 
 [ext_resource type="Script" uid="uid://bo5cwhlpg2c75" path="res://Script/Entity/PlayerFriedly/PlayerCharacter.cs" id="1_3flq2"]
-[ext_resource type="Texture2D" uid="uid://dgnldr01t7jsa" path="res://Sprite/icon.svg" id="1_73fy5"]
+[ext_resource type="Texture2D" uid="uid://dgnldr01t7jsa" path="res://Resource/Sprite/icon.svg" id="1_73fy5"]
 [ext_resource type="Script" uid="uid://3msubhobki82" path="res://addons/nobody_modules/Module/Effect/FadeInOut.cs" id="3_y6cp1"]
-[ext_resource type="Script" uid="uid://ddynfa8b0hlgn" path="res://Script/Entity/PlayerFriedly/PlayerPhysicalHit.cs" id="4_ow48m"]
+[ext_resource type="Script" uid="uid://ddynfa8b0hlgn" path="res://Script/Mekaniks/PlayerPhysicalHit.cs" id="4_ow48m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e22up"]
 size = Vector2(126, 126)

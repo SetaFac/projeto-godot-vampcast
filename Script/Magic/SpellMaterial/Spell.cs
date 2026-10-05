@@ -1,3 +1,5 @@
+using Godot;
+
 namespace projetogodotvampcast.Script.Magic.SpellMaterial;
 public enum ElementalType
 {
@@ -11,20 +13,22 @@ public enum ElementalType
     HOLY
 }
 
-public abstract class Spell
+public enum SpellDirection
 {
-    public string Name { get; protected set; }
-    
-    public ElementalType Element { get; protected set; }
-    public float ManaCost { get; protected set; }
-    public float Cooldown { get; protected set; }
-    public float Coolup { get; protected set; }
-   
-    public int Power { get; protected set; }
-    public int Level { get; protected set; } = 1;
+    LEFT = -1,
+    RIGHT = 1
+}
 
-    public virtual void Cast()
-    {
-        // Logic to create the spell's visual and physical representation in the game world
-    }
+[GlobalClass]
+public partial class Spell : Resource
+{
+    [Export] public PackedScene SpellMechanism {get; set;}
+
+    [Export] public ElementalType Element { get; set; }
+    [Export] public float ManaCost { get; set; }
+    [Export] public float Cooldown { get; set; }
+    [Export] public float Coolup { get; set; }
+   
+    [Export] public int Power { get; set; } = 5;
+    [Export] public int Level { get; set; } = 1;
 }

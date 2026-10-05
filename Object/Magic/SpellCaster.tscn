@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b2ob3ncs58sj6"]
+
+[ext_resource type="Script" uid="uid://dq6go5rqtc1u6" path="res://Script/Magic/SpellCaster.cs" id="1_gkm6h"]
+[ext_resource type="Texture2D" uid="uid://dgnldr01t7jsa" path="res://Resource/Sprite/icon.svg" id="1_mayi5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mayi5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ntam"]
+size = Vector2(54, 54)
+
+[node name="SpellCaster" type="Node2D" unique_id=1166482284]
+script = ExtResource("1_gkm6h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1228960486]
+scale = Vector2(0.4140625, 0.4140625)
+sprite_frames = SubResource("SpriteFrames_4ntam")
+
+[node name="CastTimer" type="Timer" parent="." unique_id=571417994]
+one_shot = true
+autostart = true
+
+[node name="EffectArea" type="Area2D" parent="." unique_id=1471913460]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectArea" unique_id=1888439258]
+shape = SubResource("RectangleShape2D_4ntam")
+debug_color = Color(0.632269, 0.49990094, 3.85046e-07, 0.41960785)
+
+[node name="CastLocation" type="Marker2D" parent="." unique_id=889182516]

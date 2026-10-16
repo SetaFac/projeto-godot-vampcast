@@ -25,7 +25,7 @@ public partial class Spell : Resource
     [Export] public PackedScene SpellMechanism {get; set;}
 
     [Export] public ElementalType Element { get; set; }
-    [Export] public float ManaCost { get; set; }
+    [Export] public int ManaCost { get; set; }
     [Export] public float Cooldown { get; set; }
     [Export] public float Coolup { get; set; }
    

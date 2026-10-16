@@ -6,7 +6,6 @@ using projetogodotvampcast.Script.CombatWeapon;
 using projetogodotvampcast.Script.CombatWeapon.WP;
 using projetogodotvampcast.Script.Magic.SpellMaterial;
 using projetogodotvampcast.Script.Mekaniks;
-using System.Collections.Generic;
 
 namespace projetogodotvampcast.Script.Entity.PlayerFriendly;
 public delegate void PlayerVitalStatus();
@@ -37,12 +36,14 @@ public partial class PlayerCharacter : LivingCharacter
     private Weapon currentWeapon;
     public Weapon CurrentWeaponEquipped { get => currentWeapon; }
 
-    private Sprite2D _Sprite;
+    private Spell _currentSpell;
+    private Sprite2D _sprite;
     private FadeInOut _module_fade;
     private PlayerPhysicalHit _physical_hit;
 
     private int jumpsCount = 0;
     public int MaxJumps { get; set; } = 2;
+    
 
     public override void _Ready()
     {
@@ -52,13 +53,15 @@ public partial class PlayerCharacter : LivingCharacter
         health = MaxHealth;
         mana = MaxMana;
 
+        _currentSpell = Grimmorium[0];
+
         foreach (Timer t in playerTimers.Values) GetTree().CurrentScene.CallDeferred("add_child", t);
         playerTimers["Hitted"].Timeout += () => { _module_fade?.Stop(); };
 
         _module_fade = GetNode<FadeInOut>("FadeInOut");
         _physical_hit = GetNode<PlayerPhysicalHit>("PhysicalHit");
 
-        _Sprite = GetNode<Sprite2D>("Sprite2D");
+        _sprite = GetNode<Sprite2D>("Sprite2D");
     }
 
     public override void _Process(double delta)
@@ -67,6 +70,7 @@ public partial class PlayerCharacter : LivingCharacter
 
         if (Input.IsActionJustPressed("action")) ActionOn();
         if (Input.IsActionJustPressed("cast_spell")) CastSpell();
+        if (Input.IsActionJustPressed("next_spell")) NextSpell();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -75,7 +79,7 @@ public partial class PlayerCharacter : LivingCharacter
         Vector2 inputVector = Input.GetVector("left", "right", "up", "down");
         velocity.X = inputVector.X * Speed;
 
-        if(inputVector.X != 0) _Sprite.FlipH = inputVector.X < 0;
+        if(inputVector.X != 0) _sprite.FlipH = inputVector.X < 0;
         if (Input.IsActionJustPressed("jump") && jumpsCount < MaxJumps)
         {
             velocity.Y = JumpForce;
@@ -105,12 +109,36 @@ public partial class PlayerCharacter : LivingCharacter
     {
         GD.Print("Castando magia!!");
         Asmodeus magicGod = GetTree().CurrentScene.GetNode<Asmodeus>("Asmodeus");
-        magicGod?.CastMaterialSpell((MaterialSpell)Grimmorium[0], GlobalPosition);
+        if(magicGod is not null)
+        {
+            magicGod.CastMaterialSpell((MaterialSpell)_currentSpell, GlobalPosition);
+            Mana -= _currentSpell.ManaCost;   
+        }
     }
+
+    private void NextSpell()
+    {
+        //Ajustando se for nulo sa disgraça
+        if(_currentSpell is null)
+        {
+            _currentSpell = Grimmorium[0];
+            return;
+        }
+
+        int spellIndex = Grimmorium.IndexOf(_currentSpell);
+        if(spellIndex >= Grimmorium.Count - 1)
+        {
+            _currentSpell = Grimmorium[0];
+            GD.Print("Current spell: " + _currentSpell.ResourceName);
+            return;
+        }
+        _currentSpell = Grimmorium[spellIndex + 1];
+        GD.Print("Current spell: " + _currentSpell.ResourceName);
+    }
+
 
     private void _PhysicalAttack()
     {
-        //GD.Print("Attacando!!");
         _physical_hit.StartHitBox();
     }
 
